@@ -17,28 +17,23 @@ function countCreeps(type) {
 
 module.exports.loop = function () {
 
-  let spawning = false;
-  for (let i = countCreeps(1); i < config.roleCount.harvester; i++) {
-    Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 
-      'harvester' + Game.time.toString(), {
-      memory: {role: 1}
-    });
-  }
-  if(!spawning) {
-    for(let i = countCreeps(2); i < config.roleCount.upgrader; i++) {
-      Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 
-        'upgrader' + Game.time.toString(), {
-        memory: {role: 2}
-      });
+  let spawn = Game.spawns["Spawn1"];
+  if (!spawn.spawning) {
+    for (let i = countCreeps(1); i < config.roleCount.harvester; i++) {
+      spawn.spawnCreep([WORK, CARRY, MOVE], 'harvester' + Game.time.toString(), 
+      { memory: {role: 1} });
     }
   }
-  if(!spawning) {
+  if(!spawn.spawning) {
+    for(let i = countCreeps(2); i < config.roleCount.upgrader; i++) {
+      spawn.spawnCreep([WORK, CARRY, MOVE], 'upgrader' + Game.time.toString(), 
+      { memory: {role: 2} });
+    }
+  }
+  if(!spawn.spawning) {
     for(let i = countCreeps(3); i < config.roleCount.builder; i++) {
-      Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 
-        'builder' + Game.time.toString(), {
-        memory: {role: 3}
-      });
-      spawning = true;
+      spawn.spawnCreep([WORK, CARRY, MOVE], 'builder' + Game.time.toString(), 
+      { memory: {role: 3} });
     }
   }
 
