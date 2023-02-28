@@ -21,16 +21,16 @@ var roleHarvester = {
             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
         }
       });
-    }
-    if(targets.length > 0) {
-      if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(targets[0], {visualizePathStyle: 
-          {stroke: '#ffffff'}, reusePath: 50});
+      if(targets.length > 0) {
+        if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(targets[0], {visualizePathStyle: 
+            {stroke: '#ffffff'}, reusePath: 50});
+        }
+      }
+      else {
+        randomMove.run(creep);
       }
     }
-    else {
-			randomMove.run(creep);
-		}
   }
 };
 
