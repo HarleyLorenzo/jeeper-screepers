@@ -23,6 +23,9 @@ var roleBuilder = {
 					creep.moveTo(targets[0], {visualizePathStyle: 
 						{stroke: '#ffffff'}, reusePath: 50});
 				}
+				else {
+					randomMove.run(creep);
+				}
 			}
 		}
 		else {
